@@ -17,22 +17,22 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/manufacturer/create">Create Manufacturer</NavLink>
+                  <NavLink className="nav-link text-dark" to="/manufacturers/create">Create Manufacturer</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/manufacturer/list">List Manufacturers</NavLink>
+                  <NavLink className="nav-link text-dark" to="/manufacturers">List Manufacturers</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/model/create">Create Model</NavLink>
+                  <NavLink className="nav-link text-dark" to="/models/create">Create Model</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/model/list">List Models</NavLink>
+                  <NavLink className="nav-link text-dark" to="/models">List Models</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/automobile/create">Create Automobile</NavLink>
+                  <NavLink className="nav-link text-dark" to="/automobiles/create">Create Automobile</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/automobile/list">List Automobiles</NavLink>
+                  <NavLink className="nav-link text-dark" to="/automobiles">List Automobiles</NavLink>
                 </li>
               </ul>
             </li>
