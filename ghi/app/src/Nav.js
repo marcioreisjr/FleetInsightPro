@@ -16,9 +16,24 @@ function Nav() {
                 Inventory
               </a>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="/">Action</a></li>
-                <li><a className="dropdown-item" href="/">Another action</a></li>
-                <li><a className="dropdown-item" href="/">Something else here</a></li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/manufacturer/create">Create Manufacturer</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/manufacturer/list">List Manufacturers</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/model/create">Create Model</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/model/list">List Models</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/automobile/create">Create Automobile</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/automobile/list">List Automobiles</NavLink>
+                </li>
               </ul>
             </li>
             {/* Sales dropdown menu */}
@@ -27,9 +42,15 @@ function Nav() {
                 Sales
               </a>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="/">Action</a></li>
-                <li><a className="dropdown-item" href="/">Another action</a></li>
-                <li><a className="dropdown-item" href="/">Something else here</a></li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Action</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Another Action</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Something Else Here</NavLink>
+                </li>
               </ul>
             </li>
             {/* Services dropdown menu */}
@@ -38,9 +59,15 @@ function Nav() {
                 Services
               </a>
               <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="/">Action</a></li>
-                <li><a className="dropdown-item" href="/">Another action</a></li>
-                <li><a className="dropdown-item" href="/">Something else here</a></li>
+              <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Action</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Another Action</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Something Else Here</NavLink>
+                </li>
               </ul>
             </li>
           </ul>
