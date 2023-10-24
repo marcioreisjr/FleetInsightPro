@@ -78,12 +78,17 @@ def api_list_customers(request, id=None):
 class SaleEncoder(ModelEncoder):
     model = Sale
     properties = [
-        "automobile",
         "salesperson",
         "customer",
+        "automobile",
         "price",
         "id"
     ]
+    encoders = {
+        "salesperson": SalespersonEncoder(),
+        "customer": CustomerEncoder(),
+        "automobile": AutomobileVOEncoder(),
+    }
 
 @require_http_methods(["GET", "POST"])
 def api_list_sales(request, id=None):
@@ -99,7 +104,7 @@ def api_list_sales(request, id=None):
     elif request.method == "POST":
         content = json.loads(request.body)
         print('content:', content)
-        salesperson = Sale.objects.create(**content)
+        sales = Sale.objects.create(**content)
         return JsonResponse(
             sales,
             encoder=SaleEncoder,
