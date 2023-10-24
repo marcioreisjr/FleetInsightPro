@@ -46,7 +46,7 @@ function ModelList() {
     return (
         <div>
             <h1 className="text-center my-4">Model List</h1>
-            <table className="table table-striped">
+            <table className="table table-striped shadow">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -59,7 +59,7 @@ function ModelList() {
                         <tr key={model.id}>
                             <td>{model.name}</td>
                             <td>{model.manufacturer.name}</td>
-                            <td><img className="model-pic" src={model.picture_url} alt={model.name} /></td>
+                            <td><img className="model-pic shadow" src={model.picture_url} alt={model.name} /></td>
                         </tr>
                     ))}
                 </tbody>

@@ -39,7 +39,7 @@ function ManufacturerList() {
     return (
         <div>
             <h1 className="text-center my-4">Manufacturer List</h1>
-            <table className="table table-striped">
+            <table className="table table-striped shadow">
                 <thead>
                     <tr>
                         <th>Name</th>
