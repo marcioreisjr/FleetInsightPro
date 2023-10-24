@@ -1,6 +1,6 @@
 import React from "react";
 
-function ManufacturerForm() {
+function ManufacturerForm({ setAlert }) {
   const [manufacturerName, setManufacturerName] = React.useState("");
 
   function handleNameChange(event) {
@@ -27,15 +27,14 @@ function ManufacturerForm() {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        if (response.status === 200) {
-          console.log("Manufacturer created successfully");
+        if (response.status === 200 && response.ok) {
           window.location.href = "/manufacturers/";
         } else {
-          console.log("Something went wrong");
+          throw new Error(response.statusText);
         }
       })
       .catch((error) => {
-        console.error(error);
+        setAlert("Error: " + error.message);
       });
   }
 

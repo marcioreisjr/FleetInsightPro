@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function ModelForm() {
+function ModelForm({ setAlert }) {
 
     const [manufacturers, setManufacturers] = React.useState([]);
     function getManufacturers() {
@@ -58,14 +58,13 @@ function ModelForm() {
         })
             .then((response) => {
                 if (response.status === 200) {
-                    console.log("Model created successfully");
                     window.location.href = "/models/";
                 } else {
-                    console.log("Something went wrong");
+                    throw new Error(response.statusText);
                 }
             })
             .catch((error) => {
-                console.error(error);
+                setAlert(error.message);
             });
     }
 
