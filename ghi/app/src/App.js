@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
+import TechnicianForm from './service/TechnicianForm';
+import TechnicianList from './service/TechnicianList';
 import ManufacturerForm from './inventory/ManufacturerForm';
 import ManufacturerList from './inventory/ManufacturerList';
 import ModelForm from './inventory/ModelForm';
@@ -45,6 +47,8 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/technicians/add" element={<TechnicianForm setAlert={setAlert}/>} />
+          <Route path="/technicians" element={<TechnicianList setAlert={setAlert}/>} />
           <Route path="/manufacturers/create" element={<ManufacturerForm setAlert={setAlert}/>} />
           <Route path="/manufacturers" element={<ManufacturerList />} />
           <Route path="/models/create" element={<ModelForm setAlert={setAlert} />} />

@@ -1,25 +1,8 @@
 from django.views.decorators.http import require_http_methods
 from .models import Technician, Appointment, AutomobileVO
 from .encoders import TechnicianEncoder, ServiceEncoder, AutomobileVOEncoder
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import JsonResponse
 import json
-
-
-"""
-Views to be implemented:
-+-----------------------------+-------+----------------------------------------+
-| Action                      | Method| URL                                    |
-+-----------------------------+-------+----------------------------------------+
-| List technicians            | GET   | http://localhost:8080/api/technicians/ |
-| Create a technician         | POST  | http://localhost:8080/api/technicians/ |
-| Delete a specific technician| DELETE| http://localhost:8080/api/technicians/:id/ |
-| List appointments           | GET   | http://localhost:8080/api/appointments/ |
-| Create an appointment       | POST  | http://localhost:8080/api/appointments/ |
-| Delete an appointment       | DELETE| http://localhost:8080/api/appointments/:id/ |
-| Set appointment status to "canceled"| PUT| http://localhost:8080/api/appointments/:id/cancel/ |
-| Set appointment status to "finished"| PUT| http://localhost:8080/api/appointments/:id/finish/ |
-+-----------------------------+-------+----------------------------------------+
-"""
 
 
 @require_http_methods(["GET", "POST"])
@@ -34,8 +17,8 @@ def api_technician_list(request):
     }
     """
     if request.method == "GET":
-        technician = Technician.objects.all()
-        return JsonResponse({"technician": technician},
+        technicians = Technician.objects.all()
+        return JsonResponse({"technicians": technicians},
                             encoder=TechnicianEncoder,
                             safe=False)
     elif request.method == "POST":
