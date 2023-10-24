@@ -4,6 +4,7 @@ import Nav from './Nav';
 import ManufacturerForm from './inventory/ManufacturerForm';
 import ManufacturerList from './inventory/ManufacturerList';
 import ModelForm from './inventory/ModelForm';
+import ModelList from './inventory/ModelList';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/manufacturers/create" element={<ManufacturerForm />} />
           <Route path="/manufacturers" element={<ManufacturerList />} />
           <Route path="/models/create" element={<ModelForm />} />
+          <Route path="/models" element={<ModelList />} />
         </Routes>
       </div>
     </BrowserRouter>
