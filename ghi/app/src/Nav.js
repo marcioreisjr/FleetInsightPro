@@ -10,6 +10,66 @@ function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            {/* Inventory dropdown menu */}
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Inventory
+              </a>
+              <ul className="dropdown-menu">
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/manufacturers/create">Create Manufacturer</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/manufacturers">List Manufacturers</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/models/create">Create Model</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/models">List Models</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/automobiles/create">Create Automobile</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/automobiles">List Automobiles</NavLink>
+                </li>
+              </ul>
+            </li>
+            {/* Sales dropdown menu */}
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sales
+              </a>
+              <ul className="dropdown-menu">
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Action</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Another Action</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Something Else Here</NavLink>
+                </li>
+              </ul>
+            </li>
+            {/* Services dropdown menu */}
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Services
+              </a>
+              <ul className="dropdown-menu">
+              <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Action</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Another Action</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Something Else Here</NavLink>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
