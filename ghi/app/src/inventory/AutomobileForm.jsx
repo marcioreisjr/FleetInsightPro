@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function AutomobileForm() {
+function AutomobileForm({ setAlert }) {
     const [models, setModels] = React.useState([]);
 
     /*
@@ -27,14 +27,13 @@ function AutomobileForm() {
         })
             .then((response) => {
                 if (response.status === 200) {
-                    console.log("Automobile created successfully");
                     window.location.href = "/automobiles/";
                 } else {
-                    console.log("Something went wrong");
+                    throw new Error(response.statusText);
                 }
             })
             .catch((error) => {
-                console.error(error);
+                setAlert("Error: " + error.message);
             });
     }
 
