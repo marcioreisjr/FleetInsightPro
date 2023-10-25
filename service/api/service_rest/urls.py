@@ -16,6 +16,3 @@ urlpatterns = [
     path('appointments/<int:id>/finish/', api_appointment_finish,
          name='api_appointment_finish'),
 ]
-
-# http://localhost:8080/api/appointments/:id/cancel/
-# http://localhost:8080/api/appointments/:id/finish/
