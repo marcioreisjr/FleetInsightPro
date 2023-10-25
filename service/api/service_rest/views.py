@@ -46,6 +46,90 @@ def api_appointment_list(request):
             return response
 
 
+@require_http_methods(["GET", "PUT", "DELETE"])
+def api_appointment_details(request, id):
+    """
+    GET - get appointment details
+    PUT - update appointment details
+    DELETE - delete appointment
+    """
+    if request.method == "GET":
+        try:
+            appointment = Appointment.objects.get(id=id)
+            return JsonResponse(appointment,
+                                encoder=ServiceEncoder,
+                                safe=False)
+        except Exception as e:
+            response = JsonResponse({"message": str(e)})
+            response.status_code = 400
+            return response
+    elif request.method == "PUT":
+        try:
+            data = json.loads(request.body)
+            appointment = Appointment.objects.get(id=id)
+            for key, value in data.items():
+                if key == "technician":
+                    technician = Technician.objects.get(employee_id=value)
+                    appointment.technician = technician
+                else:
+                    setattr(appointment, key, value)
+            appointment.save()
+            return JsonResponse({"appointment": appointment},
+                                encoder=ServiceEncoder,
+                                safe=False)
+        except Exception as e:
+            response = JsonResponse({"message": str(e)})
+            response.status_code = 400
+            return response
+    elif request.method == "DELETE":
+        try:
+            appointment = Appointment.objects.get(id=id)
+            appointment.delete()
+            return JsonResponse({"appointment": appointment},
+                                encoder=ServiceEncoder,
+                                safe=False)
+        except Exception as e:
+            response = JsonResponse({"message": str(e)})
+            response.status_code = 400
+            return response
+
+
+@require_http_methods(["PUT"])
+def api_appointment_cancel(request, id):
+    try:
+        appointment = Appointment.objects.get(id=id)
+        if appointment.status != "CREATED":
+            raise Exception(
+                f"Cannot cancel a {appointment.status.lower()} appointment")
+        appointment.status = "CANCELLED"
+        appointment.save()
+        return JsonResponse({"appointment": appointment},
+                            encoder=ServiceEncoder,
+                            safe=False)
+    except Exception as e:
+        response = JsonResponse({"message": str(e)})
+        response.status_code = 400
+        return response
+
+
+@require_http_methods(["PUT"])
+def api_appointment_finish(request, id):
+    try:
+        appointment = Appointment.objects.get(id=id)
+        if appointment.status != "CREATED":
+            raise Exception(
+                f"Cannot finish a {appointment.status.lower()} appointment")
+        appointment.status = "FINISHED"
+        appointment.save()
+        return JsonResponse({"appointment": appointment},
+                            encoder=ServiceEncoder,
+                            safe=False)
+    except Exception as e:
+        response = JsonResponse({"message": str(e)})
+        response.status_code = 400
+        return response
+
+
 @require_http_methods(["GET", "POST"])
 def api_technician_list(request):
     """
