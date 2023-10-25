@@ -26,7 +26,7 @@ def poll(repeat=True):
                     import_href=auto["href"],
                     defaults={
                         "sold": auto["sold"],
-                        "vin": auto["vin"],
+                        "vin": auto["vin"].upper(),
                     }
                 )
 

@@ -10,8 +10,10 @@ from .models import AutomobileVO, Salesperson, Customer, Sale
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
+        "import_href",
         "vin",
-        "sold"
+        "sold",
+        "id"
     ]
 
 class SalespersonEncoder(ModelEncoder):
@@ -91,26 +93,36 @@ class SaleEncoder(ModelEncoder):
     }
 
 @require_http_methods(["GET", "POST"])
-def api_list_sales(request, id=None):
+def api_list_sales(request):
     if request.method == "GET":
-        if id is not None:
-            sales = Sale.objects.filter(id=id)
-        else:
-            sales = Sale.objects.all()
+        sales = Sale.objects.all()
         return JsonResponse(
             {"sales": sales},
             encoder=SaleEncoder,
+            safe=False
         )
-    elif request.method == "POST":
-        content = json.loads(request.body)
-        print('content:', content)
-        sales = Sale.objects.create(**content)
-        return JsonResponse(
-            sales,
-            encoder=SaleEncoder,
-            safe=False,
-        )
-
+    else: # response is "POST"
+        try:
+            content = json.loads(request.body)
+            vin = content['automobile']
+            automobile = AutomobileVO.objects.get(vin=vin)
+            content['automobile'] = automobile
+            salesperson_id = content['salesperson']
+            salesperson = Salesperson.objects.get(id=salesperson_id)
+            content['salesperson'] = salesperson
+            customer_id = content['customer']
+            customer = Customer.objects.get(id=customer_id)
+            content['customer'] = customer
+            sale = Sale.objects.create(**content)
+            return JsonResponse(
+                {"sales": sales},
+                encoder=SaleEncoder,
+                safe=False,
+            )
+        except Exception as e:
+            response = JsonResponse({"message": str(e)})
+            response.status_code = 400
+            return response
 
 # @require_http_methods(["DELETE"])
 # def api_delete_salesperson(request, id):
