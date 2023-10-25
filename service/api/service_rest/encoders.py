@@ -10,7 +10,15 @@ class TechnicianEncoder(ModelEncoder):
 class ServiceEncoder(ModelEncoder):
     model = Appointment
     properties = [
-        "date_time", "reason", "status", "vim", "customer", "technician", "id"
+        "reason",
+        "status",
+        "date",
+        "time",
+        "vin",
+        "customer",
+        "technician",
+        "purchased_here",
+        "id"
     ]
     encoders = {
         "technician": TechnicianEncoder(),
@@ -19,4 +27,4 @@ class ServiceEncoder(ModelEncoder):
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = ["vin", "sold", "id"]
+    properties = ["import_href", "vin", "sold", "id"]

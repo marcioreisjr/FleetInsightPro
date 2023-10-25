@@ -13,6 +13,8 @@ class Technician(models.Model):
 
 
 class AutomobileVO(models.Model):
+    import_href = models.CharField(
+        max_length=200, blank=True, null=True, unique=True)
     vin = models.CharField(max_length=50)
     sold = models.BooleanField(default=False)
 
@@ -21,15 +23,17 @@ class AutomobileVO(models.Model):
 
 
 class Appointment(models.Model):
-    date_time = models.DateTimeField()
     reason = models.CharField(max_length=100)
     status = models.CharField(max_length=50)
+    date = models.CharField(max_length=50, null=True)
+    time = models.CharField(max_length=50, null=True)
     vin = models.CharField(max_length=50)
     customer = models.CharField(max_length=100)
     technician = models.ForeignKey(
         Technician,
         related_name="appointments",
         on_delete=models.SET("Former Technician"))
+    purchased_here = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.customer} - {self.date_time} - {self.reason}"
+        return f"{self.customer} - {self.date} - {self.reason}"

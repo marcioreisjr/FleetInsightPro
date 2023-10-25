@@ -63,10 +63,7 @@ function Nav() {
                   <NavLink className="nav-link text-dark" to="/technicians/add">Add Technicians</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/">Another Action</NavLink>
-                </li>
-                <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/">Something Else Here</NavLink>
+                  <NavLink className="nav-link text-dark" to="/technicians">List Technicians</NavLink>
                 </li>
               </ul>
             </li>
