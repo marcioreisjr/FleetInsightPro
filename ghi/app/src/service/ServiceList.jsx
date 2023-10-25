@@ -3,6 +3,12 @@ import React, { useState, useEffect } from "react";
 
 function ServiceList({ setAlert }) {
   const [appointments, setAppointments] = useState([]);
+  const [vin, setVin] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setVin(document.getElementById("inputVin").value.toUpperCase());
+  }
 
   function getAppointments() {
     fetch("http://localhost:8080/api/appointments/")
@@ -23,6 +29,18 @@ function ServiceList({ setAlert }) {
   return (
     <div>
       <h1 className="text-center my-4">Service Appointments</h1>
+      <div className="d-flex justify-content-end my-1">
+        <form onSubmit={handleSubmit} className="row g-3">
+          <div className="col-auto">
+            <label htmlFor="inputVin" className="visually-hidden">VIN Lookup</label>
+            <input type="text" className="form-control" id="inputVin"
+              placeholder="VIN Lookup" />
+          </div>
+          <div className="col-auto">
+            <button type="submit" className="btn btn-secondary mb-3">Search</button>
+          </div>
+        </form>
+      </div>
       <table className="table table-striped shadow">
         <thead>
           <tr>
@@ -37,7 +55,7 @@ function ServiceList({ setAlert }) {
           </tr>
         </thead>
         <tbody>
-          {appointments.filter(el => true)
+          {appointments.filter(el => vin !== "" ? el.vin === vin : true)
             .map((appointment) => (
               <tr key={appointment.id}>
                 <td>{appointment.vin}</td>
