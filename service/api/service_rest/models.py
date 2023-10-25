@@ -24,6 +24,7 @@ class AutomobileVO(models.Model):
 
 class Appointment(models.Model):
     reason = models.CharField(max_length=100)
+    # CREATED", "CANCELED", OR "FINISHED
     status = models.CharField(max_length=50)
     date = models.CharField(max_length=50, null=True)
     time = models.CharField(max_length=50, null=True)

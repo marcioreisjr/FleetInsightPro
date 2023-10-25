@@ -1,6 +1,6 @@
 from django.views.decorators.http import require_http_methods
 from .models import Technician, Appointment, AutomobileVO
-from .encoders import TechnicianEncoder, ServiceEncoder, AutomobileVOEncoder
+from .encoders import TechnicianEncoder, ServiceEncoder
 from django.http import JsonResponse
 import json
 
@@ -30,12 +30,12 @@ def api_appointment_list(request):
     elif request.method == "POST":
         try:
             data = json.loads(request.body)
-            print(data)
             technician = Technician.objects.get(
-                employee_id=data["technician"]["employee_id"])
+                employee_id=data["technician"])
             data["technician"] = technician
             all_vins = AutomobileVO.objects.all().values_list('vin', flat=True)
             data["purchased_here"] = True if data["vin"] in all_vins else False
+            data["status"] = "CREATED"
             appointment = Appointment.objects.create(**data)
             return JsonResponse({"appointment": appointment},
                                 encoder=ServiceEncoder,

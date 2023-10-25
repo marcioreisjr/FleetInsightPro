@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
+import AppointmentForm from './service/AppointmentForm';
 import TechnicianForm from './service/TechnicianForm';
 import TechnicianList from './service/TechnicianList';
 import ManufacturerForm from './inventory/ManufacturerForm';
@@ -12,6 +13,7 @@ import AutomobileList from './inventory/AutomobileList';
 
 
 import { useState } from 'react';
+import AppointmentList from './service/AppointmentList';
 
 function App() {
   const [showAlert, setShowAlert] = useState(false);
@@ -49,6 +51,8 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/technicians/add" element={<TechnicianForm setAlert={setAlert}/>} />
           <Route path="/technicians" element={<TechnicianList setAlert={setAlert}/>} />
+          <Route path="/appointments/create" element={<AppointmentForm setAlert={setAlert}/>} />
+          <Route path="/appointments" element={<AppointmentList />} />
           <Route path="/manufacturers/create" element={<ManufacturerForm setAlert={setAlert}/>} />
           <Route path="/manufacturers" element={<ManufacturerList />} />
           <Route path="/models/create" element={<ModelForm setAlert={setAlert} />} />
