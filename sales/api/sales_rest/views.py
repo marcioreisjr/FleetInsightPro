@@ -6,13 +6,16 @@ import json
 from common.json import ModelEncoder
 from .models import AutomobileVO, Salesperson, Customer, Sale
 
-# Create your views here.
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
+        "import_href",
         "vin",
-        "sold"
+        "sold",
+        "id"
     ]
+
+# View List of Salespeople, Create a Salesperson, Delete a Salesperson
 
 class SalespersonEncoder(ModelEncoder):
     model = Salesperson
@@ -36,13 +39,18 @@ def api_list_salespeople(request, id=None):
         )
     elif request.method == "POST":
         content = json.loads(request.body)
-        print('content:', content)
+        # print('content:', content)
         salesperson = Salesperson.objects.create(**content)
         return JsonResponse(
             salesperson,
             encoder=SalespersonEncoder,
             safe=False,
         )
+
+@require_http_methods()
+def delete_salesperson(request, id):
+
+# View List of Customers, Create a Customer, Delete a Customer
 
 class CustomerEncoder(ModelEncoder):
     model = Customer
@@ -67,13 +75,31 @@ def api_list_customers(request, id=None):
         )
     elif request.method == "POST":
         content = json.loads(request.body)
-        print('content:', content)
+        # print('content:', content)
         customers = Customer.objects.create(**content)
         return JsonResponse(
             customers,
             encoder=CustomerEncoder,
             safe=False,
         )
+
+@require_http_methods(["DELETE"])
+def delete_customer(request, id):
+    if request.method == "DELETE":
+        try:
+            customer = Customer.objects.filter(id=id)
+            customer.delete()
+            return JsonResponse(
+                {"message": "customer deleted successfully"},
+                status = 200,
+            )
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid customer ID"},
+                status = 404,
+            )
+
+# View List of Sales, Create a Sale, Delete a Sale
 
 class SaleEncoder(ModelEncoder):
     model = Sale
@@ -91,25 +117,36 @@ class SaleEncoder(ModelEncoder):
     }
 
 @require_http_methods(["GET", "POST"])
-def api_list_sales(request, id=None):
+def api_list_sales(request):
     if request.method == "GET":
-        if id is not None:
-            sales = Sale.objects.filter(id=id)
-        else:
-            sales = Sale.objects.all()
+        sales = Sale.objects.all()
         return JsonResponse(
             {"sales": sales},
             encoder=SaleEncoder,
+            safe=False
         )
-    elif request.method == "POST":
-        content = json.loads(request.body)
-        print('content:', content)
-        sales = Sale.objects.create(**content)
-        return JsonResponse(
-            sales,
-            encoder=SaleEncoder,
-            safe=False,
-        )
+    else: # request is "POST"
+        try:
+            content = json.loads(request.body)
+            vin = content['automobile']
+            automobile = AutomobileVO.objects.get(vin=vin)
+            content['automobile'] = automobile
+            salesperson_id = content['salesperson']
+            salesperson = Salesperson.objects.get(id=salesperson_id)
+            content['salesperson'] = salesperson
+            customer_id = content['customer']
+            customer = Customer.objects.get(id=customer_id)
+            content['customer'] = customer
+            sale = Sale.objects.create(**content)
+            return JsonResponse(
+                {"sale": sale},
+                encoder=SaleEncoder,
+                safe=False,
+            )
+        except Exception as e:
+            response = JsonResponse({"message": str(e)})
+            response.status_code = 400
+            return response
 
 
 # @require_http_methods(["DELETE"])
