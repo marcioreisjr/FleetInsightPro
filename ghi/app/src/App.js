@@ -4,6 +4,8 @@ import Nav from './Nav';
 import AppointmentForm from './service/AppointmentForm';
 import TechnicianForm from './service/TechnicianForm';
 import TechnicianList from './service/TechnicianList';
+import AppointmentList from './service/AppointmentList';
+import ServiceList from './service/ServiceList';
 import ManufacturerForm from './inventory/ManufacturerForm';
 import ManufacturerList from './inventory/ManufacturerList';
 import ModelForm from './inventory/ModelForm';
@@ -13,7 +15,6 @@ import AutomobileList from './inventory/AutomobileList';
 
 
 import { useState } from 'react';
-import AppointmentList from './service/AppointmentList';
 
 function App() {
   const [showAlert, setShowAlert] = useState(false);
@@ -53,6 +54,7 @@ function App() {
           <Route path="/technicians" element={<TechnicianList setAlert={setAlert} />} />
           <Route path="/appointments/create" element={<AppointmentForm setAlert={setAlert} />} />
           <Route path="/appointments" element={<AppointmentList setAlert={setAlert} />} />
+          <Route path="/appointments/services" element={<ServiceList setAlert={setAlert} />} />
           <Route path="/manufacturers/create" element={<ManufacturerForm setAlert={setAlert} />} />
           <Route path="/manufacturers" element={<ManufacturerList />} />
           <Route path="/models/create" element={<ModelForm setAlert={setAlert} />} />
