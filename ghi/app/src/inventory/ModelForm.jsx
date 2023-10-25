@@ -80,7 +80,7 @@ function ModelForm({ setAlert }) {
                         </div>
                         <div className="form-floating mb-3">
                             <input value={picture_url} onChange={handlePicture_UrlChange} placeholder="picture_url" required type="url" name="picture_url" id="picture_url" className="form-control" />
-                            <label htmlFor="picture url">picture Url</label>
+                            <label htmlFor="picture url">Picture Url</label>
                         </div>
                         <div className="mb-3">
                             <select value={manufacturer_id} onChange={handleManufacturer_IdChange} required name="manufacturer" id="manufacturer" className="form-select">
@@ -93,7 +93,7 @@ function ModelForm({ setAlert }) {
                             </select>
                         </div>
                         <button className="btn btn-secondary">Create</button>
-                        <span className="mx-4"><a href="/models/" className="btn btn-secondary" role="button">List</a></span>
+                        <span className="mx-4"><a href="/models/" className="btn btn-secondary" role="button">Cancel</a></span>
                     </form>
                 </div>
             </div>

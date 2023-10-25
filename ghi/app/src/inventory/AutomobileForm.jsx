@@ -101,15 +101,18 @@ function AutomobileForm({ setAlert }) {
                     <h1>Add an Automobile to Inventory</h1>
                     <form onSubmit={handleSubmit} id="create-automobile-form">
                         <div className="form-floating mb-3">
-                            <input value={color} onChange={handleColorChange} required type="text" name="color" id="color" className="form-control" />
+                            <input value={color} onChange={handleColorChange} required type="text"
+                            name="color" placeholder="Color" id="color" className="form-control" />
                             <label>Color</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input value={year} onChange={handleYearChange} required type="number" name="year" id="year" className="form-control" />
+                            <input value={year} onChange={handleYearChange} required type="number"
+                            name="year" placeholder="Year" id="year" className="form-control" />
                             <label>Year</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input value={vin} onChange={handleVinChange} required type="text" name="vin" id="vin" className="form-control" />
+                            <input value={vin} onChange={handleVinChange} required type="text"
+                            name="vin" placeholder="Vin" id="vin" className="form-control" />
                             <label>Vin</label>
                         </div>
                         <div className="mb-3">
@@ -123,7 +126,7 @@ function AutomobileForm({ setAlert }) {
                             </select>
                         </div>
                         <button className="btn btn-secondary">Create</button>
-                        <span className="mx-4"><a href="/automobiles/" className="btn btn-secondary" role="button">List</a></span>
+                        <span className="mx-4"><a href="/automobiles/" className="btn btn-secondary" role="button">Cancel</a></span>
                     </form>
                 </div>
             </div>
