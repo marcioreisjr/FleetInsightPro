@@ -49,15 +49,15 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/technicians/add" element={<TechnicianForm setAlert={setAlert}/>} />
-          <Route path="/technicians" element={<TechnicianList setAlert={setAlert}/>} />
-          <Route path="/appointments/create" element={<AppointmentForm setAlert={setAlert}/>} />
-          <Route path="/appointments" element={<AppointmentList />} />
-          <Route path="/manufacturers/create" element={<ManufacturerForm setAlert={setAlert}/>} />
+          <Route path="/technicians/add" element={<TechnicianForm setAlert={setAlert} />} />
+          <Route path="/technicians" element={<TechnicianList setAlert={setAlert} />} />
+          <Route path="/appointments/create" element={<AppointmentForm setAlert={setAlert} />} />
+          <Route path="/appointments" element={<AppointmentList setAlert={setAlert} />} />
+          <Route path="/manufacturers/create" element={<ManufacturerForm setAlert={setAlert} />} />
           <Route path="/manufacturers" element={<ManufacturerList />} />
           <Route path="/models/create" element={<ModelForm setAlert={setAlert} />} />
           <Route path="/models" element={<ModelList />} />
-          <Route path="/automobiles/create" element={<AutomobileForm setAlert={setAlert}/>} />
+          <Route path="/automobiles/create" element={<AutomobileForm setAlert={setAlert} />} />
           <Route path="/automobiles" element={<AutomobileList />} />
         </Routes>
       </div>
