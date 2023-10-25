@@ -17,13 +17,15 @@ def get_automobile():
     """
     This function gets the automobiles from the inventory-api and updates the AutomobileVO table.
     """
-    response = requests.get("http://inventory-api:8000/api/automobiles/")
+    response = requests.get("http://project-beta-inventory-api-1:8000/api/automobiles/")
     content = json.loads(response.content)
+    print('#########-test_1-########')
+    # print(f'content: {content}')
     for automobile in content["automobiles"]:
         # print("in get_bin:", bin)
         AutomobileVO.objects.update_or_create(
-            vin: automobile["vin"],
             defaults={
+                "vin": automobile["vin"],
                 "sold": automobile["sold"],
             },
         )
@@ -35,6 +37,7 @@ def poll(repeat=True):
             # Write your polling logic, here
             # Do not copy entire file
             get_automobile()
+            print('#########-test_2-########')
         except Exception as e:
             print(e, file=sys.stderr)
 

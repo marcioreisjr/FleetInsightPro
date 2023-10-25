@@ -43,13 +43,22 @@ function Nav() {
               </a>
               <ul className="dropdown-menu">
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/">Action</NavLink>
+                  <NavLink className="nav-link text-dark" to="/salespeople">Salespeople</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/">Another Action</NavLink>
+                  <NavLink className="nav-link text-dark" to="/salespeople/create">Add a Salesperson</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/">Something Else Here</NavLink>
+                  <NavLink className="nav-link text-dark" to="/">Customers</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Add a Customer</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Sales</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/">Add a Sale</NavLink>
                 </li>
               </ul>
             </li>
