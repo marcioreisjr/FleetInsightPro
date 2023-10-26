@@ -18,7 +18,6 @@ function SalespersonForm({ setAlert }) {
     function handleSubmit(event) {
         event.preventDefault();
         const url = "http://localhost:8090/api/salespeople/";
-        // const data = { color, year, vin, model_id };
         const data = { first_name, last_name, employee_id };
         fetch(url, {
             method: "POST",
@@ -54,13 +53,13 @@ function SalespersonForm({ setAlert }) {
         const url = "http://localhost:8090/api/salespeople/";
         fetch(url)
             .then((response) => {
-                console.log('response:', response)
+                // console.log('response:', response)
                 if (response.status === 200) {
                     return response.json();
                 }
             })
             .then((response) => {
-                console.log("############", response)
+                // console.log("############", response)
                 setModels(response.models);
             })
     }
@@ -92,19 +91,19 @@ function SalespersonForm({ setAlert }) {
                     <h1>Add a Salesperson</h1>
                     <form onSubmit={handleSubmit} id="create-salesperson-form">
                         <div className="form-floating mb-3">
-                            <input value={first_name} onChange={handleFirstNameChange} required type="text" name="first_name" id="first_name" className="form-control" />
+                            <input value={first_name} onChange={handleFirstNameChange} required type="text" name="first_name" id="first_name" placeholder="First Name" className="form-control" />
                             <label>First Name</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input value={last_name} onChange={handleLastNameChange} required type="text" name="last_name" id="last_name" className="form-control" />
+                            <input value={last_name} onChange={handleLastNameChange} required type="text" name="last_name" id="last_name" placeholder="Last Name" className="form-control" />
                             <label>Last Name</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input value={employee_id} onChange={handleEmployeeIdChange} required type="text" name="employee_id" id="employee_id" className="form-control" />
+                            <input value={employee_id} onChange={handleEmployeeIdChange} required type="text" name="employee_id" id="employee_id" placeholder="Employee ID" className="form-control" />
                             <label>Employee ID</label>
                         </div>
                         <button className="btn btn-secondary">Create</button>
-                        <span className="mx-4"><a href="/salespeople/" className="btn btn-secondary" role="button">List</a></span>
+                        <span className="mx-4"><a href="/salespeople/" className="btn btn-secondary" role="button">Cancel</a></span>
                     </form>
                 </div>
             </div>
