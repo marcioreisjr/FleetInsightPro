@@ -38,7 +38,9 @@ function AppointmentList({ setAlert }) {
         if (response.status === 200) {
           window.location.href = "/appointments";
         } else {
-          throw new Error(response.statusText);
+          return response.json().then(json => {
+            throw new Error(json.message || 'Something went wrong');
+          });
         }
       })
       .catch((error) => {
@@ -56,7 +58,9 @@ function AppointmentList({ setAlert }) {
         if (response.status === 200) {
           window.location.href = "/appointments";
         } else {
-          throw new Error(response.statusText);
+          return response.json().then(json => {
+            throw new Error(json.message || 'Something went wrong');
+          });
         }
       })
       .catch((error) => {

@@ -155,6 +155,10 @@ def api_technician_list(request):
     elif request.method == "POST":
         try:
             data = json.loads(request.body)
+            upcoming = Technician.objects.filter(
+                employee_id=data["employee_id"])
+            if upcoming.exists():
+                raise Exception("Technician ID already exists")
             technician = Technician.objects.create(**data)
             return JsonResponse({"technician": technician},
                                 encoder=TechnicianEncoder,

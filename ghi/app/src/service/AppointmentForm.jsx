@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 /*
         "reason": "Oil change",
-        "status": "active",  # active, cancelled, finished -- for GET only
+        "status": "active",  # active, canceled, finished -- for GET only
         "date_time": "2023-10-26T02:15:00.000Z",
         "vin": "ZZZ123...",
         "customer": "Charles Darwin",
@@ -63,7 +63,9 @@ function AppointmentForm({ setAlert }) {
         if (response.status === 200) {
           window.location.href = "/appointments";
         } else {
-          throw new Error(response.statusText);
+          return response.json().then((json) => {
+            throw new Error(json.message || "Something went wrong");
+          });
         }
       })
       .catch((error) => {
