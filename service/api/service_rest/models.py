@@ -24,10 +24,8 @@ class AutomobileVO(models.Model):
 
 class Appointment(models.Model):
     reason = models.CharField(max_length=100)
-    # CREATED", "CANCELED", OR "FINISHED
+    # created", "canceled", or "finished
     status = models.CharField(max_length=50)
-    date = models.CharField(max_length=50, null=True)
-    time = models.CharField(max_length=50, null=True)
     vin = models.CharField(max_length=50)
     customer = models.CharField(max_length=100)
     technician = models.ForeignKey(
@@ -35,6 +33,7 @@ class Appointment(models.Model):
         related_name="appointments",
         on_delete=models.SET("Former Technician"))
     purchased_here = models.BooleanField(default=False)
+    date_time = models.CharField(max_length=50, null=True)
 
     def __str__(self):
-        return f"{self.customer} - {self.date} - {self.reason}"
+        return f"{self.id}: {self.customer} - {self.date_time} - {self.status}"

@@ -12,7 +12,15 @@ function AppointmentList({ setAlert }) {
         }
       })
       .then((response) => {
-        setAppointments(response.appointments);
+        const splitTime = response.appointments.map((appointment) => {
+          const dateTime = new Date(appointment.date_time);
+          const date = dateTime.toLocaleDateString("en-US");
+          const time = dateTime.toLocaleTimeString("en-US").replace(":00 ", " ");
+          appointment.date = date;
+          appointment.time = time;
+          return appointment;
+        });
+        setAppointments(splitTime);
       });
   }
 
@@ -72,7 +80,7 @@ function AppointmentList({ setAlert }) {
           </tr>
         </thead>
         <tbody>
-          {appointments.filter(el => el.status === "CREATED")
+          {appointments.filter(el => el.status === "created")
             .map((appointment) => (
               <tr key={appointment.id}>
                 <td>{appointment.vin}</td>

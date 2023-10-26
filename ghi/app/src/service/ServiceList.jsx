@@ -18,7 +18,15 @@ function ServiceList({ setAlert }) {
         }
       })
       .then((response) => {
-        setAppointments(response.appointments);
+        const splitTime = response.appointments.map((appointment) => {
+          const dateTime = new Date(appointment.date_time);
+          const date = dateTime.toLocaleDateString("en-US");
+          const time = dateTime.toLocaleTimeString("en-US").replace(":00 ", " ");
+          appointment.date = date;
+          appointment.time = time;
+          return appointment;
+        });
+        setAppointments(splitTime);
       });
   }
 

@@ -12,7 +12,7 @@ def api_appointment_list(request):
     follows:
     {
         "reason": "Oil change",
-        "status": "active",  # active, cancelled, finished -- for GET only
+        "status": "active",  # active, canceled, finished -- for GET only
         "date": "10/10/2023",
         "time": "13:30",
         "vin": "ZZZ123...",
@@ -35,7 +35,7 @@ def api_appointment_list(request):
             data["technician"] = technician
             all_vins = AutomobileVO.objects.all().values_list('vin', flat=True)
             data["purchased_here"] = True if data["vin"] in all_vins else False
-            data["status"] = "CREATED"
+            data["status"] = "created"
             appointment = Appointment.objects.create(**data)
             return JsonResponse({"appointment": appointment},
                                 encoder=ServiceEncoder,
@@ -98,17 +98,20 @@ def api_appointment_details(request, id):
 def api_appointment_cancel(request, id):
     try:
         appointment = Appointment.objects.get(id=id)
-        if appointment.status != "CREATED":
+        if appointment.status != "created":
             raise Exception(
                 f"Cannot cancel a {appointment.status.lower()} appointment")
-        appointment.status = "CANCELLED"
+        appointment.status = "canceled"
         appointment.save()
         return JsonResponse({"appointment": appointment},
                             encoder=ServiceEncoder,
                             safe=False)
     except Exception as e:
-        response = JsonResponse({"message": str(e)})
-        response.status_code = 400
+        response = JsonResponse({
+            "message": str(e),
+            "status": "canceled",
+        })
+        response.status_code = 200
         return response
 
 
@@ -116,17 +119,20 @@ def api_appointment_cancel(request, id):
 def api_appointment_finish(request, id):
     try:
         appointment = Appointment.objects.get(id=id)
-        if appointment.status != "CREATED":
+        if appointment.status != "created":
             raise Exception(
                 f"Cannot finish a {appointment.status.lower()} appointment")
-        appointment.status = "FINISHED"
+        appointment.status = "finished"
         appointment.save()
         return JsonResponse({"appointment": appointment},
                             encoder=ServiceEncoder,
                             safe=False)
     except Exception as e:
-        response = JsonResponse({"message": str(e)})
-        response.status_code = 400
+        response = JsonResponse({
+            "message": str(e),
+            "status": "finished",
+        })
+        response.status_code = 200
         return response
 
 
