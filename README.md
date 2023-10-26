@@ -27,7 +27,7 @@ The architecture of this system is composed of seven subsystems, which are direc
 ![alt text](./system-architecture.png "System Architecture")
 ## Accessing the Microservices
 
-### Inventory Mircoservice
+### Inventory Microservice
 
 #### The manufacturer information is accessible through the following endpoints:
 
@@ -75,7 +75,7 @@ Example of creating a vehicle model:
 | Update a specific automobile    | PUT    | http://localhost:8100/api/automobiles/:vin/ |
 | Delete a specific automobile    | DELETE | http://localhost:8100/api/automobiles/:vin/ |
 
-Exmplae of creating an automobile:
+Example of creating an automobile:
 ```json
 {
     "vin": "1FMCU9J90FUA00001",
@@ -123,7 +123,7 @@ The microservice is accessible through the following endpoints:
 | Set appointment status to "canceled" | PUT    | http://localhost:8080/api/appointments/:id/cancel/ |
 | Set appointment status to "finished" | PUT    | http://localhost:8080/api/appointments/:id/finish/ |
 
-Exaple of adding a technician:
+Example of adding a technician:
 ```json
 {
     "first_name": "John",
