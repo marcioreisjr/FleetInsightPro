@@ -39,7 +39,6 @@ def api_list_salespeople(request, id=None):
         )
     elif request.method == "POST":
         content = json.loads(request.body)
-        # print('content:', content)
         salesperson = Salesperson.objects.create(**content)
         return JsonResponse(
             salesperson,
@@ -47,8 +46,20 @@ def api_list_salespeople(request, id=None):
             safe=False,
         )
 
-@require_http_methods()
+@require_http_methods("DELETE")
 def delete_salesperson(request, id):
+    try:
+        salesperson = Salesperson.objects.get(id=id)
+        salesperson.delete()
+        return JsonResponse(
+            {"message": "salesperson deleted successfully"},
+            status = 200,
+        )
+    except Salesperson.DoesNotExist:
+        return JsonResponse(
+            {"message": "Invalid customer ID"},
+            status = 404,
+        )
 
 # View List of Customers, Create a Customer, Delete a Customer
 
@@ -75,7 +86,6 @@ def api_list_customers(request, id=None):
         )
     elif request.method == "POST":
         content = json.loads(request.body)
-        # print('content:', content)
         customers = Customer.objects.create(**content)
         return JsonResponse(
             customers,
@@ -87,7 +97,7 @@ def api_list_customers(request, id=None):
 def delete_customer(request, id):
     if request.method == "DELETE":
         try:
-            customer = Customer.objects.filter(id=id)
+            customer = Customer.objects.get(id=id)
             customer.delete()
             return JsonResponse(
                 {"message": "customer deleted successfully"},
@@ -148,36 +158,17 @@ def api_list_sales(request):
             response.status_code = 400
             return response
 
-
-# @require_http_methods(["DELETE"])
-# def api_delete_salesperson(request, id):
-#     print('test-api_delete_salesperson')
-#     if request.method == "DELETE":
-#         content = json.loads(request.body)
-#         print('content:', content)
-#         try:
-#             id = content["id"]
-#             salesperson = Salesperson.objects.get(id=id)
-#         except Salesperson.DoesNotExist:
-#             return JsonResponse(
-#                 {"message": "Invalid salesperson ID"},
-#                 status=400,
-#             )
-#         salesperson.delete()
-#         return JsonResponse(
-#             {"message": "Salesperson deleted successfully"}
-#         )
-
-# @require_http_methods(["DELETE"])
-# def api_delete_salesperson(request, id):
-#     try:
-#         salesperson = Salesperson.objects.get(id=id)
-#         salesperson.delete()
-#         return JsonResponse(
-#             {"message": "Salesperson deleted successfully"}
-#         )
-#     except Salesperson.DoesNotExist:
-#         return JsonResponse(
-#             {"message": "Invalid salesperson ID"},
-#             status=400,
-#         )
+@require_http_methods(["DELETE"])
+def delete_sale(request, id):
+    try:
+        sale = Sale.objects.get(id=id)
+        sale.delete()
+        return JsonResponse(
+            {"message": "sale deleted successfully"},
+            status = 200,
+        )
+    except Sale.DoesNotExist:
+        return JsonResponse(
+            {"message": "Invalid sale ID"},
+            status = 404,
+        )
