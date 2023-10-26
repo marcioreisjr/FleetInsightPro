@@ -49,7 +49,7 @@ function ManufacturerForm({ setAlert }) {
               <label htmlFor="name">Name</label>
             </div>
             <button className="btn btn-secondary">Create</button>
-            <span className="mx-4"><a href="/manufacturers/" className="btn btn-secondary" role="button">List</a></span>
+            <span className="mx-4"><a href="/manufacturers/" className="btn btn-secondary" role="button">Cancel</a></span>
           </form>
         </div>
       </div>
