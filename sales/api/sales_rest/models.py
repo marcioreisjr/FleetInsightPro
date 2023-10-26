@@ -8,7 +8,7 @@ class AutomobileVO(models.Model):
     sold = models.BooleanField(default=False)
 
     def __str__(self):
-            return f"{self.vin}"
+            return self.vin
 
 class Salesperson(models.Model):
     first_name = models.CharField(max_length=100)
@@ -16,7 +16,7 @@ class Salesperson(models.Model):
     employee_id = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return self.employee_id
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=100)
@@ -43,7 +43,7 @@ class Sale(models.Model):
         related_name="sales",
         on_delete=models.CASCADE,
     )
-    price = models.DecimalField(max_digits=8, decimal_places=2)
+    price = models.PositiveIntegerField()
 
     def __str__(self):
-         return f"{self.customer} - {self.automobile} - {self.price}"
+         return f"{self.customer.first_name} {self.customer.last_name} - {self.automobile.vin} - {self.price}"
