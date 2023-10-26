@@ -49,10 +49,10 @@ function Nav() {
                   <NavLink className="nav-link text-dark" to="/salespeople/create">Add a Salesperson</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/">Customers</NavLink>
+                  <NavLink className="nav-link text-dark" to="/customers">Customers</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/">Add a Customer</NavLink>
+                  <NavLink className="nav-link text-dark" to="/customers/create">Add a Customer</NavLink>
                 </li>
                 <li className="dropdown-item">
                   <NavLink className="nav-link text-dark" to="/">Sales</NavLink>
