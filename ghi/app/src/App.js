@@ -12,6 +12,8 @@ import ModelForm from './inventory/ModelForm';
 import ModelList from './inventory/ModelList';
 import AutomobileForm from './inventory/AutomobileForm';
 import AutomobileList from './inventory/AutomobileList';
+import SalespersonForm from './sales/SalespersonForm';
+import SalespersonList from './sales/SalespersonList';
 
 
 import { useState } from 'react';
@@ -61,6 +63,8 @@ function App() {
           <Route path="/models" element={<ModelList />} />
           <Route path="/automobiles/create" element={<AutomobileForm setAlert={setAlert} />} />
           <Route path="/automobiles" element={<AutomobileList />} />
+          <Route path="/salespeople/create" element={<SalespersonForm setAlert={setAlert}/>} />
+          <Route path="/salespeople" element={<SalespersonList setAlert={setAlert}/>} />
         </Routes>
       </div>
     </BrowserRouter>
