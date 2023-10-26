@@ -12,12 +12,11 @@ class ServiceEncoder(ModelEncoder):
     properties = [
         "reason",
         "status",
-        "date",
-        "time",
         "vin",
         "customer",
         "technician",
         "purchased_here",
+        "date_time",
         "id"
     ]
     encoders = {

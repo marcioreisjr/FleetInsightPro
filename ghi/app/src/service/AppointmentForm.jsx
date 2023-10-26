@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 /*
         "reason": "Oil change",
         "status": "active",  # active, cancelled, finished -- for GET only
-        "date": "10/10/2023",
-        "time": "13:30",
+        "date_time": "2023-10-26T02:15:00.000Z",
         "vin": "ZZZ123...",
         "customer": "Charles Darwin",
         "technician": {Technician},
@@ -51,8 +50,7 @@ function AppointmentForm({ setAlert }) {
     const data = {
       vin: vin.toUpperCase(),
       customer: customer,
-      date: date,
-      time: time,
+      date_time: new Date(date + " " + time),
       technician: technician,
       reason: reason,
     };
