@@ -11,7 +11,7 @@ This system is containerized and requires Docker to be installed on your host sy
 - Decompress the image and navigate to the uncompressed directory.
 - Create the beta-data volume by running `docker volume create beta-data`.
 - Build the Docker images by running `docker-compose build`.
-- Start the system by running `docker-compose up`.
+- Start the system by running `docker-compose up`. Please allow several minutes for the system to start, especially the first time you run it as it needs to initialize the database.
 - Finally, open your browser and navigate to http://localhost:3000/ to access the application.
 
 ## Design
@@ -25,10 +25,11 @@ The architecture of this system is composed of seven subsystems, which are direc
 <br>
 
 ![alt text](./system-architecture.png "System Architecture")
-## Accessing the microservice
+## Accessing the Microservices
 
-### Inventory
-#### The manufacturers information is accessible through the following endpoints:
+### Inventory Mircoservice
+
+#### The manufacturer information is accessible through the following endpoints:
 
 | Action                          | Method | URL                                          |
 | --------------------------------| ------ | -------------------------------------------- |
@@ -37,7 +38,15 @@ The architecture of this system is composed of seven subsystems, which are direc
 | Get a specific manufacturer     | GET    | http://localhost:8100/api/manufacturers/:id/ |
 | Update a specific manufacturer  | PUT    | http://localhost:8100/api/manufacturers/:id/ |
 | Delete a specific manufacturer  | DELETE | http://localhost:8100/api/manufacturers/:id/ |
-#### The manufacturers information is accessible through the following endpoints:
+
+Example of creating a manufacturer:
+```json
+{
+    "name": "Ford"
+}
+```
+
+#### The model information is accessible through the following endpoints:
 
 | Action                          | Method | URL                                         |
 | --------------------------------| ------ | ------------------------------------------- |
@@ -47,7 +56,16 @@ The architecture of this system is composed of seven subsystems, which are direc
 | Update a specific vehicle model | PUT    | http://localhost:8100/api/models/:id/       |
 | Delete a specific vehicle model | DELETE | http://localhost:8100/api/models/:id/       |
 
-#### The Automobiles information is accessible through the following endpoints:
+Example of creating a vehicle model:
+```json
+{
+    "name": "Focus",
+    "picture_url": "https://upload.wikimedia.org/front_20090302.jpg",
+    "manufacturer_id": 1
+}
+```
+
+#### The Automobile information is accessible through the following endpoints:
 
 | Action                          | Method | URL                                         |
 | --------------------------------| ------ | ------------------------------------------- |
@@ -57,7 +75,26 @@ The architecture of this system is composed of seven subsystems, which are direc
 | Update a specific automobile    | PUT    | http://localhost:8100/api/automobiles/:vin/ |
 | Delete a specific automobile    | DELETE | http://localhost:8100/api/automobiles/:vin/ |
 
-### Auto Sales
+Exmplae of creating an automobile:
+```json
+{
+    "vin": "1FMCU9J90FUA00001",
+    "model_id": 1,
+    "color": "red",
+    "year": 2015
+}
+```
+
+Example of updating an automobile:
+```json
+{
+    "color": "blue",
+    "year": 2012,
+    "sold": true
+}
+```
+
+### Auto Sales Microservice
 The microservice is accessible through the following endpoints:
 
 | Action                          | Method | URL                                         |
@@ -72,7 +109,7 @@ The microservice is accessible through the following endpoints:
 | Create a sale                   | POST   | http://localhost:8090/api/sales/            |
 | Delete a sale                   | DELETE | http://localhost:8090/api/sales/:id         |
 
-### Auto Service
+### Auto Service Microservice
 The microservice is accessible through the following endpoints:
 
 | Action                               | Method | URL                                                |
@@ -85,3 +122,24 @@ The microservice is accessible through the following endpoints:
 | Delete an appointment                | DELETE | http://localhost:8080/api/appointments/:id/        |
 | Set appointment status to "canceled" | PUT    | http://localhost:8080/api/appointments/:id/cancel/ |
 | Set appointment status to "finished" | PUT    | http://localhost:8080/api/appointments/:id/finish/ |
+
+Exaple of adding a technician:
+```json
+{
+    "first_name": "John",
+    "last_name": "Doe",
+    "employee_id": "1234"
+}
+```
+
+Example of creating an appointment:
+```json
+{
+    "vin": "1FMCU9J90FUA00001",
+    "date_time": "2021-03-01T12:00:00.000Z",
+    "reason": "Oil change",
+    "vin": "ZZZ123...",
+    "customer": "Charles Darwin",
+    "technician": {Technician},
+}
+```
