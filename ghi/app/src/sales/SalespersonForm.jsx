@@ -18,7 +18,6 @@ function SalespersonForm({ setAlert }) {
     function handleSubmit(event) {
         event.preventDefault();
         const url = "http://localhost:8090/api/salespeople/";
-        // const data = { color, year, vin, model_id };
         const data = { first_name, last_name, employee_id };
         fetch(url, {
             method: "POST",
@@ -54,13 +53,13 @@ function SalespersonForm({ setAlert }) {
         const url = "http://localhost:8090/api/salespeople/";
         fetch(url)
             .then((response) => {
-                console.log('response:', response)
+                // console.log('response:', response)
                 if (response.status === 200) {
                     return response.json();
                 }
             })
             .then((response) => {
-                console.log("############", response)
+                // console.log("############", response)
                 setModels(response.models);
             })
     }
