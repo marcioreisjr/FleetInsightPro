@@ -101,25 +101,25 @@ function CustomerForm({ setAlert }) {
                     <form onSubmit={handleSubmit} id="create-customer-form">
                         <div className="form-floating mb-3">
                             <input value={first_name} onChange={handleFirstNameChange} required type="text" name="first_name" id="first_name" placeholder="First Name" className="form-control" />
-                            <label>First Name</label>
+                            <label>First Name...</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input value={last_name} onChange={handleLastNameChange} required type="type" name="last_name" id="last_name" placeholder="Last Name" className="form-control"/>
-                            <label>Last Name</label>
+                            <label>Last Name...</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input value={address} onChange={handleAddressChange} required type="text" name="address" id="address" placeholder="Address" className="form-control"/>
-                            <label>Address</label>
+                            <label>Address...</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input value={phone_number} onChange={handlePhoneNumberChange} required type="text" name="address" id="address" placeholder="Phone Number" className="form-control"/>
-                            <label>Phone Number</label>
+                            <label>Phone Number...</label>
                         </div>
-                        <button className="btn btn-secondary">
+                        <button className="btn btn-primary">
                             Create
                         </button>
                         <span className="mx-4">
-                            <a href="/customers/" className="btn btn-secondary" role="button">Cancel</a>
+                            <a href="/customers/" className="btn btn-primary" role="button">Cancel</a>
                         </span>
                     </form>
                 </div>

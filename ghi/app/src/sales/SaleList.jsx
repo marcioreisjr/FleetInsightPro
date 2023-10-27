@@ -41,25 +41,24 @@ function SaleList({ setAlert }) {
             <h1 className="text-left my-4">Sales</h1>
             <table className="table table-striped shadow">
                 <thead>
-                    <tr>
-                        <td>Salesperson Employee ID</td>
-                        <td>Salesperson Name</td>
-                        <td>Customer</td>
-                        <td>VIN</td>
-                        <td>Price</td>
+                    <tr >
+                        <th>Salesperson Employee ID</th>
+                        <th>Salesperson Name</th>
+                        <th>Customer</th>
+                        <th>VIN</th>
+                        <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* hello */}
-                    {sales.map((sale) => {
+                    {sales.map((sale) => (
                         <tr>
                             <td>{sale.salesperson.employee_id}</td>
                             <td>{sale.salesperson.first_name + " " + sale.salesperson.last_name}</td>
                             <td>{sale.customer.first_name + " " + sale.customer.last_name}</td>
                             <td>{sale.automobile.vin}</td>
-                            <td>{sale.price}</td>
+                            <td>${sale.price}</td>
                         </tr>
-                    })}
+                    ))}
                 </tbody>
             </table>
         </div>
