@@ -248,8 +248,8 @@ function SaleForm({ setAlert }) {
                             className="form-control"
                             />
                         </div>
-                        <button className="btn btn-primary">Create</button>
-                        <span className="mx-4"><a href="/sales" className="btn btn-primary" role="button">Cancel</a></span>
+                        <button className="btn btn-secondary">Create</button>
+                        <span className="mx-4"><a href="/sales" className="btn btn-secondary" role="button">Cancel</a></span>
                     </form>
                 </div>
             </div>

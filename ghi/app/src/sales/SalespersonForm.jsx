@@ -102,8 +102,8 @@ function SalespersonForm({ setAlert }) {
                             <input value={employee_id} onChange={handleEmployeeIdChange} required type="text" name="employee_id" id="employee_id" placeholder="Employee ID" className="form-control" />
                             <label>Employee ID...</label>
                         </div>
-                        <button className="btn btn-primary">Create</button>
-                        <span className="mx-4"><a href="/salespeople/" className="btn btn-primary" role="button">Cancel</a></span>
+                        <button className="btn btn-secondary">Create</button>
+                        <span className="mx-4"><a href="/salespeople/" className="btn btn-secondary" role="button">Cancel</a></span>
                     </form>
                 </div>
             </div>
