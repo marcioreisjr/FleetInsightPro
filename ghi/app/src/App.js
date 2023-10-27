@@ -18,6 +18,7 @@ import CustomerForm from './sales/CustomerForm';
 import CustomerList from './sales/CustomerList';
 import SaleForm from './sales/SaleForm';
 import SaleList from './sales/SaleList';
+import SalespersonHistory from './sales/SalespersonHistory';
 
 import { useState } from 'react';
 
@@ -72,6 +73,7 @@ function App() {
           <Route path="/customers" element={<CustomerList setAlert={setAlert} />}/>
           <Route path="/sales/create" element={<SaleForm setAlert={setAlert} />}/>
           <Route path="/sales" element={<SaleList setAlert={setAlert} />}/>
+          <Route path="/sales/history" element={<SalespersonHistory setAlert={setAlert} />}/>
         </Routes>
       </div>
     </BrowserRouter>

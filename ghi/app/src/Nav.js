@@ -60,6 +60,9 @@ function Nav() {
                 <li className="dropdown-item">
                   <NavLink className="nav-link text-dark" to="/sales/create">Add a Sale</NavLink>
                 </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/sales/history">Salesperson History</NavLink>
+                </li>
               </ul>
             </li>
             {/* Services dropdown menu */}
