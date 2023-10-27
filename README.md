@@ -143,3 +143,33 @@ Example of creating an appointment:
     "technician": {Technician},
 }
 ```
+
+Example of creating a salesperson:
+```json
+{
+	"first_name": "Hello",
+	"last_name": "World",
+	"employee_id": "hworld"
+
+}
+```
+
+Example of creating a customer:
+```json
+{
+	"first_name": "Happy",
+	"last_name": "Customer",
+	"address": "1234 Consumer Lane, New York, NY 11101",
+	"phone_number": "111-233-1267"          // first_name.initial + last_name
+}
+```
+
+Example of creating a customer:
+```json
+{
+    "automobile": "1XKAD49X93J855508",      // must be existing vin
+    "salesperson": "1",                     // salesperson ID
+    "customer": "2",                        // customer ID
+    "price": 29000.99                       // number with two decimal places
+}
+```
