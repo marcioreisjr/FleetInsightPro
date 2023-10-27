@@ -92,18 +92,18 @@ function SalespersonForm({ setAlert }) {
                     <form onSubmit={handleSubmit} id="create-salesperson-form">
                         <div className="form-floating mb-3">
                             <input value={first_name} onChange={handleFirstNameChange} required type="text" name="first_name" id="first_name" placeholder="First Name" className="form-control" />
-                            <label>First Name</label>
+                            <label>First Name...</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input value={last_name} onChange={handleLastNameChange} required type="text" name="last_name" id="last_name" placeholder="Last Name" className="form-control" />
-                            <label>Last Name</label>
+                            <label>Last Name...</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input value={employee_id} onChange={handleEmployeeIdChange} required type="text" name="employee_id" id="employee_id" placeholder="Employee ID" className="form-control" />
-                            <label>Employee ID</label>
+                            <label>Employee ID...</label>
                         </div>
-                        <button className="btn btn-secondary">Create</button>
-                        <span className="mx-4"><a href="/salespeople/" className="btn btn-secondary" role="button">Cancel</a></span>
+                        <button className="btn btn-primary">Create</button>
+                        <span className="mx-4"><a href="/salespeople/" className="btn btn-primary" role="button">Cancel</a></span>
                     </form>
                 </div>
             </div>

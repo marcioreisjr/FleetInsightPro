@@ -50,7 +50,7 @@ function SalespersonList() {
                 </thead>
                 <tbody>
                     {salespeople.map((salesperson) => (
-                        <tr>
+                        <tr key={salesperson.id}>
                             <td>{salesperson.employee_id}</td>
                             <td>{salesperson.first_name}</td>
                             <td>{salesperson.last_name}</td>

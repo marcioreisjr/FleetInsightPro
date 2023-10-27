@@ -55,10 +55,13 @@ function Nav() {
                   <NavLink className="nav-link text-dark" to="/customers/create">Add a Customer</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/">Sales</NavLink>
+                  <NavLink className="nav-link text-dark" to="/sales">Sales</NavLink>
                 </li>
                 <li className="dropdown-item">
-                  <NavLink className="nav-link text-dark" to="/">Add a Sale</NavLink>
+                  <NavLink className="nav-link text-dark" to="/sales/create">Add a Sale</NavLink>
+                </li>
+                <li className="dropdown-item">
+                  <NavLink className="nav-link text-dark" to="/sales/history">Salesperson History</NavLink>
                 </li>
               </ul>
             </li>

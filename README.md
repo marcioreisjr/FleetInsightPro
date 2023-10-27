@@ -109,6 +109,36 @@ The microservice is accessible through the following endpoints:
 | Create a sale                   | POST   | http://localhost:8090/api/sales/            |
 | Delete a sale                   | DELETE | http://localhost:8090/api/sales/:id         |
 
+Example of creating a salesperson:
+```json
+{
+	"first_name": "Hello",
+	"last_name": "World",
+    "employee_id": "hworld"     // first_name.initial + last_name
+
+}
+```
+
+Example of creating a customer:
+```json
+{
+    "automobile": "1XKAD49X93J855508",      // must be existing vin
+    "salesperson": "1",                     // salesperson ID
+    "customer": "2",                        // customer ID
+    "price": 29000.99                       // number with two decimal places
+}
+```
+
+Example of creating a sale:
+```json
+{
+	"salesperson": "1",                     // salesperson ID
+	"customer": "1",                        // customer ID
+	"automobile": "2T1BURHE6EC056684",      // existing automobile vin
+	"price": 11222.33                       // number with two decimal places
+}
+```
+
 ### Auto Service Microservice
 The microservice is accessible through the following endpoints:
 
