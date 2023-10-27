@@ -7,30 +7,14 @@ function SaleList({ setAlert }) {
         const url = "http://localhost:8090/api/sales/"
         fetch(url)
             .then((data) => {
-                console.log("RESPONSE:", data)
                 if (data.status === 200) {
                     return data.json();
                 }
             })
             .then((response) => {
-                console.log("response_two", response.sales)
                 setSales(response.sales)
-                console.log("SALES:", sales)
             })
     };
-
-    // function getSales() {
-    //     fetch("http://localhost:8090/api/sales/")
-    //         .then((response) => {
-    //             if (response.status === 200) {
-    //                 return response.json();
-    //             }
-    //         })
-    //         .then((response) => {
-    //             console.log("SALES:", sales)
-    //             setSales(response.sales);
-    //         });
-    // }
 
     useEffect(() => {
         getSales();
@@ -51,7 +35,7 @@ function SaleList({ setAlert }) {
                 </thead>
                 <tbody>
                     {sales.map((sale) => (
-                        <tr>
+                        <tr key={sale.id}>
                             <td>{sale.salesperson.employee_id}</td>
                             <td>{sale.salesperson.first_name + " " + sale.salesperson.last_name}</td>
                             <td>{sale.customer.first_name + " " + sale.customer.last_name}</td>
