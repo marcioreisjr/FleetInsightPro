@@ -77,11 +77,11 @@ function CustomerForm({ setAlert }) {
                             <input value={phone_number} onChange={handlePhoneNumberChange} required type="text" name="address" id="address" placeholder="Phone Number" className="form-control"/>
                             <label>Phone Number...</label>
                         </div>
-                        <button className="btn btn-primary">
+                        <button className="btn btn-secondary">
                             Create
                         </button>
                         <span className="mx-4">
-                            <a href="/customers/" className="btn btn-primary" role="button">Cancel</a>
+                            <a href="/customers/" className="btn btn-secondary" role="button">Cancel</a>
                         </span>
                     </form>
                 </div>
