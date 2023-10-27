@@ -13,7 +13,6 @@ JSON in the body of the request:
 */
 
 function SaleForm({ setAlert }) {
-    const [vin, setVin] = useState([]);
     const [automobiles, setAutomobiles] = useState([]);
     const [automobile, setAutomobile] = useState("");
     const [salespeople, setSalespeople] = useState([]);
@@ -21,10 +20,6 @@ function SaleForm({ setAlert }) {
     const [customers, setCustomers] = useState([]);
     const [customer, setCustomer] = useState("");
     const [price, setPrice] = useState("");
-
-    function handleVinChange(event) {
-        setVin(event.target.value);
-    }
 
     function handleAutomobileChange(event) {
         setAutomobile(event.target.value);
