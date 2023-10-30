@@ -3,11 +3,28 @@ import React, { useState, useEffect } from "react";
 
 function ServiceList({ setAlert }) {
   const [appointments, setAppointments] = useState([]);
-  const [vin, setVin] = useState("");
+  const [searchData, setSearchData] = useState([]);
 
   function handleSubmit(event) {
     event.preventDefault();
-    setVin(document.getElementById("inputVin").value.toUpperCase());
+    const searchCriteria =
+      document.querySelector('input[name="searchSel"]:checked').value;
+    const searchVal =
+      document.getElementById("inputSearchData").value.toUpperCase();
+    if (searchVal === "") return setSearchData(appointments);
+    const filteredData = appointments.filter((appointment) => {
+      if (searchCriteria === "vin") {
+        return appointment.vin.toUpperCase().includes(searchVal.toUpperCase());
+      } else if (searchCriteria === "customer") {
+        return appointment.customer.toUpperCase().includes(searchVal.toUpperCase());
+      } else if (searchCriteria === "technician") {
+        return appointment.technician["first_name"].toUpperCase().includes(searchVal.toUpperCase()) ||
+          appointment.technician["last_name"].toUpperCase().includes(searchVal.toUpperCase()) ||
+          appointment.technician["employee_id"].toUpperCase().includes(searchVal.toUpperCase());
+      }
+      return false;
+    });
+    setSearchData(filteredData);
   }
 
   function getAppointments() {
@@ -27,6 +44,7 @@ function ServiceList({ setAlert }) {
           return appointment;
         });
         setAppointments(splitTime);
+        setSearchData(splitTime);
       });
   }
 
@@ -37,15 +55,38 @@ function ServiceList({ setAlert }) {
   return (
     <div>
       <h1 className="text-center my-4">Service Appointments</h1>
-      <div className="d-flex justify-content-end my-1">
-        <form onSubmit={handleSubmit} className="row g-3">
-          <div className="col-auto">
-            <label htmlFor="inputVin" className="visually-hidden">VIN Lookup</label>
-            <input type="text" className="form-control" id="inputVin"
-              placeholder="VIN Lookup" />
+      <div className="d-flex justify-content-end my-3">
+        <form onSubmit={handleSubmit} className="d-flex">
+          <div className="d-flex align-items-center">
+            <div className="form-check mx-3">
+              <input className="form-check-input" type="radio" name="searchSel"
+                id="searchSel1" value={"vin"} defaultChecked />
+              <label className="form-check-label" htmlFor="flexRadioDefault1">
+                VIN
+              </label>
+            </div>
+            <div className="form-check mx-3">
+              <input className="form-check-input" type="radio" name="searchSel"
+                id="searchSel2" value={"customer"} />
+              <label className="form-check-label" htmlFor="flexRadioDefault2">
+                Customer
+              </label>
+            </div>
+            <div className="form-check mx-3">
+              <input className="form-check-input" type="radio" name="searchSel"
+                id="searchSel3" value={"technician"} />
+              <label className="form-check-label" htmlFor="flexRadioDefault3">
+                Technician
+              </label>
+            </div>
           </div>
-          <div className="col-auto">
-            <button type="submit" className="btn btn-secondary mb-3">Search</button>
+          <div className="d-flex align-items-center">
+            <div className="col-auto mx-3">
+              <label htmlFor="inputSearchData" className="visually-hidden">Lookup text</label>
+              <input type="text" className="form-control" id="inputSearchData"
+                placeholder="Lookup text" />
+            </div>
+            <button type="submit" className="btn btn-secondary">Search</button>
           </div>
         </form>
       </div>
@@ -63,20 +104,19 @@ function ServiceList({ setAlert }) {
           </tr>
         </thead>
         <tbody>
-          {appointments.filter(el => vin !== "" ? el.vin === vin : true)
-            .map((appointment) => (
-              <tr key={appointment.id}>
-                <td>{appointment.vin}</td>
-                <td>{appointment.purchased_here ? 'Yes' : 'No'}</td>
-                <td>{appointment.customer}</td>
-                <td>{appointment.date}</td>
-                <td>{appointment.time}</td>
-                <td>{appointment.technician["first_name"] +
-                  " " + appointment.technician["last_name"]}</td>
-                <td>{appointment.reason}</td>
-                <td>{appointment.status.toLowerCase()}</td>
-              </tr>
-            ))}
+          {searchData.map((appointment) => (
+            <tr key={appointment.id}>
+              <td>{appointment.vin}</td>
+              <td>{appointment.purchased_here ? 'Yes' : 'No'}</td>
+              <td>{appointment.customer}</td>
+              <td>{appointment.date}</td>
+              <td>{appointment.time}</td>
+              <td>{appointment.technician["first_name"] +
+                " " + appointment.technician["last_name"]}</td>
+              <td>{appointment.reason}</td>
+              <td>{appointment.status.toLowerCase()}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
