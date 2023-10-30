@@ -49,6 +49,10 @@ function SalespersonHistory() {
                             <tr>
                                 <th>Salesperson</th>
                                 <th>Customer</th>
+                                <th>Manufacturer</th>
+                                <th>Model</th>
+                                <th>Color</th>
+                                <th>Picture</th>
                                 <th>VIN</th>
                                 <th>Price</th>
                             </tr>
