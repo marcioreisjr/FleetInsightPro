@@ -29,7 +29,9 @@ function AutomobileForm({ setAlert }) {
                 if (response.status === 200) {
                     window.location.href = "/automobiles/";
                 } else {
-                    throw new Error(response.statusText);
+                    return response.json().then(json => {
+                        throw new Error(json.message || 'Something went wrong');
+                    });
                 }
             })
             .catch((error) => {
