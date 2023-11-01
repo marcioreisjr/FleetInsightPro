@@ -1,7 +1,24 @@
 import React, { useEffect } from "react";
 
+
 function AutomobileForm({ setAlert }) {
     const [models, setModels] = React.useState([]);
+
+    function dataIsConsistent(data) {
+        if (data.color.length > 50) {
+            setAlert("Error: Color must be 50 characters or less");
+            return false;
+        }
+        if (data.year < 1900 || data.year > 2200) {
+            setAlert("Error: Invalid year");
+            return false;
+        }
+        if (data.vin.length !== 17) {
+            setAlert("Error: Vin must be 17 characters");
+            return false;
+        }
+        return true;
+    };
 
     /*
     To create a automobile, we need to send a POST request to the server
@@ -18,6 +35,7 @@ function AutomobileForm({ setAlert }) {
         event.preventDefault();
         const url = "http://localhost:8100/api/automobiles/";
         const data = { color, year, vin, model_id };
+        if (!dataIsConsistent(data)) return;
         fetch(url, {
             method: "POST",
             headers: {
@@ -29,7 +47,9 @@ function AutomobileForm({ setAlert }) {
                 if (response.status === 200) {
                     window.location.href = "/automobiles/";
                 } else {
-                    throw new Error(response.statusText);
+                    return response.json().then(json => {
+                        throw new Error(json.message || 'Something went wrong');
+                    });
                 }
             })
             .catch((error) => {
@@ -86,7 +106,7 @@ function AutomobileForm({ setAlert }) {
 
     const [vin, setVin] = React.useState("");
     function handleVinChange(event) {
-        setVin(event.target.value);
+        setVin(event.target.value.toUpperCase());
     }
 
     const [model_id, setModel_Id] = React.useState("");
@@ -102,17 +122,17 @@ function AutomobileForm({ setAlert }) {
                     <form onSubmit={handleSubmit} id="create-automobile-form">
                         <div className="form-floating mb-3">
                             <input value={color} onChange={handleColorChange} required type="text"
-                            name="color" placeholder="Color" id="color" className="form-control" />
+                                name="color" placeholder="Color" id="color" className="form-control" />
                             <label>Color</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input value={year} onChange={handleYearChange} required type="number"
-                            name="year" placeholder="Year" id="year" className="form-control" />
+                                name="year" placeholder="Year" id="year" className="form-control" />
                             <label>Year</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input value={vin} onChange={handleVinChange} required type="text"
-                            name="vin" placeholder="Vin" id="vin" className="form-control" />
+                                name="vin" placeholder="Vin" id="vin" className="form-control" />
                             <label>Vin</label>
                         </div>
                         <div className="mb-3">

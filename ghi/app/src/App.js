@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
+import Footer from './Footer';
 import AppointmentForm from './service/AppointmentForm';
 import TechnicianForm from './service/TechnicianForm';
 import TechnicianList from './service/TechnicianList';
@@ -76,6 +77,7 @@ function App() {
           <Route path="/sales/history" element={<SalespersonHistory setAlert={setAlert} />}/>
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

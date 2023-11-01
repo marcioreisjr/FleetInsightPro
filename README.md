@@ -1,4 +1,4 @@
-# CarCar - Car Dealership Management App
+# CarCar - Car Dealership Management App -- Demonstration Version
 CarCar is a web application for managing sales and services at car dealerships.
 
 ## Team

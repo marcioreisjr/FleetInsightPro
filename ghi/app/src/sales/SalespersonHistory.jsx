@@ -11,7 +11,7 @@ function SalespersonHistory() {
     function filterSalesBySalesperson() {
         return sales.filter((sale) => sale.salesperson.id === parseInt(selectedSalesperson));
     }
-
+    // get auto sold details at `http://localhost:8100/api/automobiles/<str:vin>`
     function getSales() {
         const url = "http://localhost:8090/api/sales/";
         fetch(url)
@@ -30,10 +30,10 @@ function SalespersonHistory() {
     }, []);
 
     return (
-        <div className="row">
-            <div className="col-lg-6">
+        <div className="container">
+            <div>
                 <h1 className="text-left my-4">Salesperson History</h1>
-                <div>
+                <div className="my-4">
                     <select onChange={handleSalesChange} value={selectedSalesperson} required id="salesperson" name="salesperson" className="form-select">
                         <option value="">Salesperson</option>
                         {sales.map((sale) => (
@@ -43,7 +43,7 @@ function SalespersonHistory() {
                         ))}
                     </select>
                 </div>
-                <div>
+                <div className="table-responsive">
                     <table className="table table-striped shadow">
                         <thead>
                             <tr>
