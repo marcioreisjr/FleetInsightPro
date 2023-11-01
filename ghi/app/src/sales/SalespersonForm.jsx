@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function SalespersonForm({ setAlert }) {
-    const [models, setModels] = useState([]);
-    // console.log("#########", models);
-    // const [salespeople, setSalespeople] = useState([]);
 
     /*
     To create a salesperson, we need to send a POST request to the server
@@ -15,6 +12,7 @@ function SalespersonForm({ setAlert }) {
         "employee_id": "skhan"
     }
     */
+
     function handleSubmit(event) {
         event.preventDefault();
         const url = "http://localhost:8090/api/salespeople/";
@@ -30,7 +28,9 @@ function SalespersonForm({ setAlert }) {
                 if (response.status === 200) {
                     window.location.href = "/salespeople/";
                 } else {
-                    throw new Error(response.statusText);
+                    return response.json().then(json => {
+                        throw new Error(json.message || 'Something went wrong');
+                    })
                 }
             })
             .catch((error) => {
@@ -38,41 +38,10 @@ function SalespersonForm({ setAlert }) {
             });
     }
 
-    /*
-    To get a list of salespeople, we need to send a GET request to the server
-    At http://localhost:8090/api/salespeople/ and will receive a
-    JSON response that looks like this:
-    {
-        "first_name": "Shahzad",
-        "last_name": "Khan",
-        "employee_id": "skhan",
-        "id": 6
-    }
-    */
-    function getModels() {
-        const url = "http://localhost:8090/api/salespeople/";
-        fetch(url)
-            .then((response) => {
-                // console.log('response:', response)
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
-            .then((response) => {
-                // console.log("############", response)
-                setModels(response.models);
-            })
-    }
-
-    useEffect(() => {
-        getModels();
-    }, []);
-
     const [first_name, setFirstName] = React.useState("");
     function handleFirstNameChange(event) {
         setFirstName(event.target.value);
     }
-    // console.log("first name", first_name)
 
     const [last_name, setLastName] = React.useState("");
     function handleLastNameChange(event) {
