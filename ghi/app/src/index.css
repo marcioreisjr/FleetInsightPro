@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;1,200&family=Righteous&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +9,47 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.table {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+/* page main area */
+.bg-custom-color {
+  background-color: #000d53;
+  color: white;
+}
+
+.enclosing {
+  width: fit-content;
+  padding: 1rem;
+}
+
+body:after {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #e3e7fc;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.forms {
+  background-color: rgb(250, 250, 250);
+  border-radius: 10px;
+}
+
+.interleaver {
+  font-family: Exo+2;
+  font-size: 1.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8rem;
+  margin: 1rem 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }

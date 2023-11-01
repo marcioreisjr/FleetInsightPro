@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 function SalespersonForm({ setAlert }) {
-    const [models, setModels] = useState([]);
     // console.log("#########", models);
     // const [salespeople, setSalespeople] = useState([]);
 
@@ -37,36 +36,6 @@ function SalespersonForm({ setAlert }) {
                 setAlert("Error: " + error.message);
             });
     }
-
-    /*
-    To get a list of salespeople, we need to send a GET request to the server
-    At http://localhost:8090/api/salespeople/ and will receive a
-    JSON response that looks like this:
-    {
-        "first_name": "Shahzad",
-        "last_name": "Khan",
-        "employee_id": "skhan",
-        "id": 6
-    }
-    */
-    function getModels() {
-        const url = "http://localhost:8090/api/salespeople/";
-        fetch(url)
-            .then((response) => {
-                // console.log('response:', response)
-                if (response.status === 200) {
-                    return response.json();
-                }
-            })
-            .then((response) => {
-                // console.log("############", response)
-                setModels(response.models);
-            })
-    }
-
-    useEffect(() => {
-        getModels();
-    }, []);
 
     const [first_name, setFirstName] = React.useState("");
     function handleFirstNameChange(event) {
