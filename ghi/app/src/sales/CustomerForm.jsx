@@ -1,6 +1,27 @@
 import React, { useState } from "react";
 
 function CustomerForm({ setAlert }) {
+
+    function dataIsConsistent(data) {
+        if (data.first_name.length > 50) {
+            setAlert("Error: First name must be 50 characters or less");
+            return false;
+        }
+        if (data.last_name.length > 50) {
+            setAlert("Error: Last name must be 50 characters or less");
+            return false;
+        }
+        if (data.address.length > 100) {
+            setAlert("Error: Address must be 100 characters or less");
+            return false;
+        }
+        if (data.phone_number.length > 20 || data.phone_number.length < 10) {
+            setAlert("Error: Phone number must be between 10 and 20 characters");
+            return false;
+        }
+        return true;
+    }
+
     /*
     To create a customer, we need to send a POST request to the server
     At http://localhost:8090/api/customers/ with the following
@@ -56,6 +77,7 @@ function CustomerForm({ setAlert }) {
             address,
             phone_number: fixPhoneNumber(phone_number),
         };
+        if (!dataIsConsistent(data)) return;
         fetch(url, {
             method: "POST",
             headers: {
@@ -95,7 +117,7 @@ function CustomerForm({ setAlert }) {
                         </div>
                         <div className="form-floating mb-3">
                             <input value={phone_number} onChange={handlePhoneNumberChange} onBlur={handlePhoneBlur}
-                            required type="tel" name="address" id="address" placeholder="Phone Number" className="form-control" />
+                                required type="tel" name="address" id="address" placeholder="Phone Number" className="form-control" />
                             <label>Phone Number...</label>
                         </div>
                         <button className="btn btn-secondary">

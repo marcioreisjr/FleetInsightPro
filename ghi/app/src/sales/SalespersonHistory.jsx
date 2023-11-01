@@ -33,7 +33,7 @@ function SalespersonHistory() {
         <div className="container">
             <div>
                 <h1 className="text-left my-4">Salesperson History</h1>
-                <div>
+                <div className="my-4">
                     <select onChange={handleSalesChange} value={selectedSalesperson} required id="salesperson" name="salesperson" className="form-select">
                         <option value="">Salesperson</option>
                         {sales.map((sale) => (
