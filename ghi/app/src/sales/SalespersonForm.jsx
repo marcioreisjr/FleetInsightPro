@@ -1,9 +1,6 @@
 import React from "react";
 
 function SalespersonForm({ setAlert }) {
-    // console.log("#########", models);
-    // const [salespeople, setSalespeople] = useState([]);
-
     /*
     To create a salesperson, we need to send a POST request to the server
     At http://localhost:8090/api/salespeople/ with the following JSON in the
@@ -14,6 +11,7 @@ function SalespersonForm({ setAlert }) {
         "employee_id": "skhan"
     }
     */
+
     function handleSubmit(event) {
         event.preventDefault();
         const url = "http://localhost:8090/api/salespeople/";
@@ -29,7 +27,9 @@ function SalespersonForm({ setAlert }) {
                 if (response.status === 200) {
                     window.location.href = "/salespeople/";
                 } else {
-                    throw new Error(response.statusText);
+                    return response.json().then(json => {
+                        throw new Error(json.message || 'Something went wrong');
+                    })
                 }
             })
             .catch((error) => {
@@ -41,7 +41,6 @@ function SalespersonForm({ setAlert }) {
     function handleFirstNameChange(event) {
         setFirstName(event.target.value);
     }
-    // console.log("first name", first_name)
 
     const [last_name, setLastName] = React.useState("");
     function handleLastNameChange(event) {

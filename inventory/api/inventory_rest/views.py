@@ -10,6 +10,14 @@ from .encoders import (
 from .models import Automobile, Manufacturer, VehicleModel
 
 
+def vin_valid(vin):
+    # Note: This is a very simple check to avoid long string to break the Model
+    #       storage. It is not a real VIN validation.
+    if len(vin) != 17:
+        return False
+    return True
+
+
 @require_http_methods(["GET", "POST"])
 def api_automobiles(request):
     if request.method == "GET":
@@ -21,6 +29,8 @@ def api_automobiles(request):
     else:
         try:
             content = json.loads(request.body)
+            if not vin_valid(content["vin"]):
+                raise Exception("Invalid VIN")
             model_id = content["model_id"]
             model = VehicleModel.objects.get(pk=model_id)
             content["model"] = model
@@ -30,9 +40,9 @@ def api_automobiles(request):
                 encoder=AutomobileEncoder,
                 safe=False,
             )
-        except:
+        except Exception as e:
             response = JsonResponse(
-                {"message": "Could not create the automobile"}
+                {"message": str(e) or "Could not create the automobile"}
             )
             response.status_code = 400
             return response

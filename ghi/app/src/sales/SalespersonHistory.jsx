@@ -11,7 +11,7 @@ function SalespersonHistory() {
     function filterSalesBySalesperson() {
         return sales.filter((sale) => sale.salesperson.id === parseInt(selectedSalesperson));
     }
-
+    // get auto sold details at `http://localhost:8100/api/automobiles/<str:vin>`
     function getSales() {
         const url = "http://localhost:8090/api/sales/";
         fetch(url)
@@ -30,8 +30,8 @@ function SalespersonHistory() {
     }, []);
 
     return (
-        <div className="row">
-            <div className="col-lg-6">
+        <div className="container">
+            <div>
                 <h1 className="text-left my-4">Salesperson History</h1>
                 <div>
                     <select onChange={handleSalesChange} value={selectedSalesperson} required id="salesperson" name="salesperson" className="form-select">
@@ -43,12 +43,16 @@ function SalespersonHistory() {
                         ))}
                     </select>
                 </div>
-                <div>
+                <div className="table-responsive">
                     <table className="table table-striped shadow">
                         <thead>
                             <tr>
                                 <th>Salesperson</th>
                                 <th>Customer</th>
+                                <th>Year</th>
+                                <th>Manufacturer</th>
+                                <th>Model</th>
+                                <th>Color</th>
                                 <th>VIN</th>
                                 <th>Price</th>
                             </tr>
@@ -58,6 +62,10 @@ function SalespersonHistory() {
                                 <tr key={sale.id}>
                                     <td>{sale.salesperson.first_name} {sale.salesperson.last_name}</td>
                                     <td>{sale.customer.first_name} {sale.customer.last_name}</td>
+                                    <td>Year</td>
+                                    <td>Manufacturer</td>
+                                    <td>Model</td>
+                                    <td>Color</td>
                                     <td>{sale.automobile.vin}</td>
                                     <td>${sale.price}</td>
                                 </tr>
