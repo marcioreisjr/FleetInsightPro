@@ -12,19 +12,19 @@
 
 }
 .bgimg-1 {
-  background-image: url("https://pictures.dealer.com/e/earthmotorcars/0030/73279a6d00cbb37249ac4487f5115cb2x.jpg");
+  background-image: url("/public/lobby-1.webp");
   min-height: var(--default-pic-height);
   border-radius: var(--default-border-radius);
 }
 
 .bgimg-2 {
-  background-image: url("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Finvisionstudio.com%2Fwp-content%2Fuploads%2F2015%2F10%2FCrevier-BMW-automotive-dealership-architectural-photography-360-tour-provider-virtual-tours-for-auto-dealerships-irvine-property-photography-company.jpg&f=1&nofb=1&ipt=284f99b54c8088f98434da6ab257df6711437a5e8fc2f952f544d70418fed849&ipo=images");
+  background-image: url("/public/lobby-2.jpeg");
   min-height: var(--default-pic-height);
   border-radius: var(--default-border-radius);
 }
 
 .bgimg-3 {
-  background-image: url("http://mikecerra.com/wp-content/uploads/2016/12/BMW-dealership-photography-auto-dealership-360-tour-company-virtual-tours-for-automotive-dealerships.jpg");
+  background-image: url("/public/lobby-3.jpeg");
   min-height: var(--default-pic-height);
   border-radius: var(--default-border-radius);
 }
