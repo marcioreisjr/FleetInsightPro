@@ -49,10 +49,6 @@ function SalespersonHistory() {
                             <tr>
                                 <th>Salesperson</th>
                                 <th>Customer</th>
-                                <th>Year</th>
-                                <th>Manufacturer</th>
-                                <th>Model</th>
-                                <th>Color</th>
                                 <th>VIN</th>
                                 <th>Price</th>
                             </tr>
@@ -62,10 +58,6 @@ function SalespersonHistory() {
                                 <tr key={sale.id}>
                                     <td>{sale.salesperson.first_name} {sale.salesperson.last_name}</td>
                                     <td>{sale.customer.first_name} {sale.customer.last_name}</td>
-                                    <td>Year</td>
-                                    <td>Manufacturer</td>
-                                    <td>Model</td>
-                                    <td>Color</td>
                                     <td>{sale.automobile.vin}</td>
                                     <td>${sale.price}</td>
                                 </tr>
