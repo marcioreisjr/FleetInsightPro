@@ -38,13 +38,23 @@ def api_list_salespeople(request, id=None):
             encoder=SalespersonEncoder,
         )
     elif request.method == "POST":
-        content = json.loads(request.body)
-        salesperson = Salesperson.objects.create(**content)
-        return JsonResponse(
-            salesperson,
-            encoder=SalespersonEncoder,
-            safe=False,
-        )
+        try:
+            content = json.loads(request.body)
+            newSalesperson = Salesperson.objects.filter(
+                employee_id=content["employee_id"]
+            )
+            if newSalesperson.exists():
+                raise Exception("Salesperson ID already exists")
+            salesperson = Salesperson.objects.create(**content)
+            return JsonResponse(
+                {"salesperson": salesperson},
+                encoder=SalespersonEncoder,
+                safe=False,
+            )
+        except Exception as e:
+            response = JsonResponse({"message": str(e)})
+            response.status_code=400
+            return response
 
 @require_http_methods("DELETE")
 def delete_salesperson(request, id):
