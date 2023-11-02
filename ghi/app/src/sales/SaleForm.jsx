@@ -237,15 +237,10 @@ function SaleForm({ setAlert }) {
                             </select>
                         </div>
                         <div className="mb-3">
-                        <label htmlFor="price" className="form-label">Price</label>
-                            <input
-                            value={price}
-                            onChange={handlePriceChange}
-                            required type="text"
-                            name="price"
-                            id="price"
-                            placeholder="0"
-                            className="form-control"
+                            <label htmlFor="price" className="form-label">Price</label>
+                            <input value={price} type="number" min={0} step={0.01}
+                                onChange={handlePriceChange} required name="price" id="price"
+                                placeholder="0" className="form-control"
                             />
                         </div>
                         <button className="btn btn-secondary">Create</button>
