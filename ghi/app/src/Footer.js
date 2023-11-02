@@ -7,7 +7,7 @@ function Footer() {
     <footer className="footer mt-auto py-3 bg-custom-color fixed-bottom small">
       <div className="d-flex justify-content-between">
         <div className="mx-3">
-          Copywrite (c) 2023 by CarCar Innovation Software
+          Copyright (c) 2023 by CarCar Innovation Software
         </div>
         <div></div>
         <div className="mx-2">
