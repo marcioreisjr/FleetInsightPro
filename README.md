@@ -1,5 +1,16 @@
-# CarCar - Car Dealership Management App -- Demonstration Version
-CarCar is a web application for managing sales and services at car dealerships.
+# Fleet Insight Pro - Car Dealership Management App
+Fleet Insight Pro is a web application for managing sales and services at car dealerships.
+
+This app is a full-stack application to showcase the technologies listed below. It is a project for the Galvanize Software Engineering Immersive program.
+- Django / REST Framework
+- PostgreSQL
+- Microservices
+- Docker Containers
+- React / React Router
+- Bootstrap
+- HTML / CSS / JavaScript
+- Git
+- Agile / Scrum
 
 ## Team
 - Howard - Car sale microservice.
@@ -11,7 +22,7 @@ This system is containerized and requires Docker to be installed on your host sy
 - Decompress the image and navigate to the uncompressed directory.
 - Create the beta-data volume by running `docker volume create beta-data`.
 - Build the Docker images by running `docker-compose build`.
-- Start the system by running `docker-compose up`. Please allow several minutes for the system to start, especially the first time you run it as it needs to initialize the database.
+- Start the system by running `docker-compose up`. Please allow several minutes for the system to start, especially the first time you run it as it needs to initialize the database. Some errors may appear on the console during the initialization, but they are expected and can be ignored (`Failed to establish a new connection: [Errno -2]`).
 - Finally, open your browser and navigate to http://localhost:3000/ to access the application.
 
 ## Design
