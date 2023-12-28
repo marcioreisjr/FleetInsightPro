@@ -7,7 +7,7 @@ function MainPage() {
     <div className="container d-flex flex-column">
       <div className="bgimg-1">
         <div className="caption">
-          <span className="border h1">CarCar</span>
+          <span className="border h1">Fleet Insight Pro</span>
         </div>
       </div>
 
